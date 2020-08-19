@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!-- <h1></h1> -->
+    <input type="text" id="input" value="">
+    <br><br>
+    <button id="btn" onclick="addElement(arr)">ADD1</button>
+    <button id="btn1" onclick="addElement(arr2)">ADD2</button>
+    <br>
+    <p id="p"></p>
+    <p id="arr2"></p>
+    <br>
+    <button onclick="check()">Check</button>
+    <button onclick="pop()">Xóa</button>
+    <hr>
+    <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <p id="result"></p>
+    <script>
+        let arr = Array();
+        let arr2 = [];
+
+
+        let getInput = document.getElementById('input'),
+            getp = document.getElementById('p');
+
+
+        ///press enter = click button
+        getInput.addEventListener('keyup', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById('btn').click();
+            }
+        });
+        //add an element to arr[]
+        let x = 0;
+
+        function addElement(a) {
+            x = a.length;
+            let add = getInput.value;
+            if (add != "") {
+                a[x] = add;
+                x++;
+                alert("thêm " + add);
+                document.getElementById("input").focus();
+            } else {
+                alert('input sth!')
+                document.getElementById("input").focus();
+            }
+            show();
+        }
+
+        function show() {
+            getp.innerHTML = 'arr1: ' + arr.join(' ') + " ]";
+            document.getElementById('arr2').innerHTML = ' arr2: [ ' + arr2.join(' ') + ' ]';
+        }
+
+        function pop() {
+            arr.pop();
+            show();
+            // alert(arr.length);
+        }
+
+        /////////////////////////////////////function/////////////////////////////////////////////////////////////////////////////////////////
+        function check() {
+            let check;
+            if (arr.length == arr2.length) {
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] === arr2[i]) {
+                        check = true;
+                    } else {
+                        check = false;
+                        break;
+                    }
+                }
+            } else {
+                check = false;
+            }
+
+            if (check) {
+                alert('2 mảng giống nhau!');
+            } else {
+                alert('2 mảng không giống nhau!');
+            }
+        }
+    </script>
+</body>
+
+</html>
